@@ -1,0 +1,27 @@
+﻿@model BookViewModel
+@{
+    ViewData["Title"] = Model.Book.Title;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    @if (Model.Book.IsAnthology)
+    {
+        <p>An Anthology from</p>
+    }
+    else
+    {
+        <p>By</p>
+    }
+</div>
+<div>
+    @foreach(var author in Model.Book.Authors)
+    {
+    <p><a asp-controller="Library" asp-action="Author" asp-route-authorid="@author.AuthorId">@author.FullName</a></p>
+    }
+</div>
+<br />
+<div>
+    <p><a asp-controller="Library" asp-action="AddAuthorToBook" asp-route-authorid="@Model.Book.BookId">Add Author</a></p>
+</div>

@@ -1,0 +1,23 @@
+﻿@model Book_Reader.Models.AuthorsViewModel
+
+@{
+    ViewData["Title"] = "Authors";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    @if (Model.Authors.Count() == 0)
+    {
+        <p>No Authors Found</p>
+    }
+    else
+    {
+        foreach(var author in Model.Authors.OrderBy(o => o.LastName).ThenBy(o => o.FirstName).ThenBy(o => o.MiddleName))
+        {
+        <p><a asp-controller="Library" asp-action="Author" asp-route-authorid="@author.AuthorId">@author.FullName</a>
+    </p>
+        }
+    }
+    <p><a asp-controller="Library" asp-action="AddAuthor">Add Author</a></p>
+</div>

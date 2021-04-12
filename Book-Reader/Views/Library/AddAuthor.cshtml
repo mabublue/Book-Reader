@@ -1,0 +1,32 @@
+﻿@model AddAuthorModel
+@{
+    ViewData["Title"] = "Add Author";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (!(ViewBag.Message is null))
+{
+    <p>@ViewBag.Message</p>
+}
+
+<div>
+    <form asp-controller="Library" asp-action="AddAuthor" method="post">
+        <p>
+            <label asp-for="FirstName"></label>
+            <input asp-for="FirstName" />
+        </p>
+        <p>
+            <label asp-for="MiddleName"></label>
+            <input asp-for="MiddleName" />
+        </p>
+        <p>
+            <label asp-for="LastName"></label>
+            <input asp-for="LastName" />
+        </p>
+        <p>
+            <button asp-controller="Library" asp-action="AddAuthor">Add Author</button>
+            <button asp-controller="Library" asp-action="AddAuthor_Cancel">Cancel</button>
+        </p>
+    </form>
+</div>

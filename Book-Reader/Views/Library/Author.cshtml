@@ -1,0 +1,27 @@
+﻿@model AuthorViewModel
+@{
+    ViewData["Title"] = "Author";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    @Model.Author.FullName
+</div>
+<br />
+<h3>Books</h3>
+<div>
+        @if (Model.Author.Books is null || Model.Author.Books.Count() == 0)
+    {
+        <p>No Books Found</p>
+    }
+    else
+    {
+        foreach(var book in Model.Author.Books.OrderBy(o => o.Title))
+        {
+        <p><a asp-controller="Library" asp-action="Book" asp-route-bookid="@book.BookId">@book.Title</a></p>
+        }
+    }
+    <p><a asp-controller="Library" asp-action="AddBook" asp-route-authorid="@Model.Author.AuthorId">Add Book</a></p>
+
+</div>
